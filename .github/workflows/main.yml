@@ -32,6 +32,24 @@ jobs:
           push: true
           tags: ghcr.io/bugaevc/debian-toolbox:bullseye
 
+      - name: Build and push Ubuntu 18.04 image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: |
+            distro=ubuntu
+            version=18.04
+          push: true
+          tags: ghcr.io/bugaevc/ubuntu-toolbox:18.04
+
+      - name: Build and push Ubuntu 20.04 image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: |
+            distro=ubuntu
+            version=20.04
+          push: true
+          tags: ghcr.io/bugaevc/ubuntu-toolbox:20.04
+
       - name: Build and push Ubuntu 20.10 image
         uses: docker/build-push-action@v2
         with:
