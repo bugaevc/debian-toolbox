@@ -1,0 +1,51 @@
+name: build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_push:
+    name: Build and Push the Docker images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: docker.pkg.github.com
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+# The following has to be done in the right order,
+# so that the right images show up as "latest".
+
+      - name: Build and push Debian Buster image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: version=buster
+          push: true
+          tags: docker.pkg.github.com/bugaevc/debian-toolbox/debian-toolbox:buster
+
+      - name: Build and push Debian Bullseye image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: docker.pkg.github.com/bugaevc/debian-toolbox/debian-toolbox:bullseye
+
+      - name: Build and push Ubuntu 20.10 image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: |
+            distro=ubuntu
+            version=20.10
+          push: true
+          tags: docker.pkg.github.com/bugaevc/debian-toolbox/ubuntu-toolbox:20.10
+
+      - name: Build and push Ubuntu 21.04 image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: |
+            distro=ubuntu
+            version=21.04
+          push: true
+          tags: docker.pkg.github.com/bugaevc/debian-toolbox/ubuntu-toolbox:21.04
