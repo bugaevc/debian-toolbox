@@ -12,7 +12,7 @@ repo builds working Debian and Ubuntu images for use with Toolbox.
 
 2. **Pull an image:**
     ```
-    $ podman pull ghcr.io/bugaevc/debian-toolbox/ubuntu-toolbox:21.04
+    $ podman pull ghcr.io/bugaevc/ubuntu-toolbox:21.04
     ```
 
 3. **Create a toolbox:**
