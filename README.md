@@ -10,29 +10,17 @@ repo builds working Debian and Ubuntu images for use with Toolbox.
 
 1. [**Get Toolbox**](https://github.com/containers/toolbox/blob/main/README.md#installation).
 
-2. **Log into GitHub Container Registry with Podman.**
-    You can find the official instructions [here](https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages).
-    Or, just follow these steps:
-    * Go to https://github.com/settings/tokens
-    * Make a new token, allow it to `read:packages` (and perhaps `write:packages`).
-    * Run
-        ```
-        $ podman login https://docker.pkg.github.com
-        ```
-
-        Paste the token when prompted for password. 
-
-3. **Pull an image:**
+2. **Pull an image:**
     ```
-    $ podman pull docker.pkg.github.com/bugaevc/debian-toolbox/ubuntu-toolbox:21.04
+    $ podman pull ghcr.io/bugaevc/debian-toolbox/ubuntu-toolbox:21.04
     ```
 
-4. **Create a toolbox:**
+3. **Create a toolbox:**
     ```
     $ toolbox create --image ubuntu-toolbox:21.04 ubuntu
     ```
 
-5. **Enjoy!**
+4. **Enjoy!**
     ```
     $ toolbox enter ubuntu
     ⬢[you@toolbox ~]$ 
