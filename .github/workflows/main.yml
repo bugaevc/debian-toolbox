@@ -32,6 +32,13 @@ jobs:
           push: true
           tags: ghcr.io/bugaevc/debian-toolbox:bullseye
 
+      - name: Build and push Debian Bookworm image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: version=bookworm
+          push: true
+          tags: ghcr.io/bugaevc/debian-toolbox:bookworm
+
       - name: Build and push Ubuntu 18.04 image
         uses: docker/build-push-action@v2
         with:
@@ -67,3 +74,12 @@ jobs:
             version=21.04
           push: true
           tags: ghcr.io/bugaevc/ubuntu-toolbox:21.04
+
+      - name: Build and push Ubuntu 24.04 image
+        uses: docker/build-push-action@v2
+        with:
+          build-args: |
+            distro=ubuntu
+            version=24.04
+          push: true
+          tags: ghcr.io/bugaevc/ubuntu-toolbox:24.04
